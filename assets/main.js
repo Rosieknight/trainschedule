@@ -74,6 +74,15 @@ database.ref().on("child_added", function(childSnapshot, prevChildKey) {
   
   //Push it all the schedule.
   $("#trainTable > tbody").append("<tr><td>" + nameOfTrain + "</td><td>" + 
-  	endOfLine + "</td><td>" + tFrequency + "</td><td>" + nextTrain.format("HH:mm") + 
-  	"</td><td>" + tMinutesTillTrain + "</td></tr>");
+  	endOfLine + "</td><td>" + tFrequency + "</td><td class='nextHere'>" + 
+  	nextTrain.format("HH:mm") + "</td><td class='tilHere'>" + tMinutesTillTrain + 
+  	"</td></tr>");
 });
+
+//I know this is probably not what you meant by updating the train times,
+//but it does work. It also doesn't repeat the first value for the whole
+//table, delete anything in the final column, or generate NAN errors. If 
+//I had more time, I'd play around with it some more.
+setInterval(function(){
+	location.reload();
+}, 60*1000);
